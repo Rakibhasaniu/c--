@@ -3,6 +3,7 @@
         "LOOP_2.C": "cpp",
         ".env*": "dotenv",
         "stdlib.h": "c",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iostream": "cpp"
     }
 }
