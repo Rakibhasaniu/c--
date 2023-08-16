@@ -14,8 +14,9 @@ int main ()
 {
     Person* rakib=new Person("Rakib Hasan",25);
     Person* sohana = new Person("Sohana Shitol",24); 
-    rakib->name=sohana->name;
-    rakib->age=sohana->age;
+    // rakib->name=sohana->name;
+    // rakib->age=sohana->age;
+    *rakib=*sohana;
     delete sohana;
     cout<<rakib->name<<" "<<rakib->age<<endl;
     return 0;
