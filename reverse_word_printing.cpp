@@ -6,7 +6,7 @@ void print(stringstream& ss)
     if(ss>>result)
     {
         print(ss);
-        cout<<result<<endl;
+        cout<<result<<" ";
     }
 }
 int main ()

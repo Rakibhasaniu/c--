@@ -1,0 +1,1 @@
+{"name":"Local: range_based_for_loop","url":"d:\\c++\\range_based_for_loop.cpp","tests":[{"id":1692250139982,"input":"rakib hasan","output":"2"},{"id":1692250145911,"input":"","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\c++\\range_based_for_loop.cpp","group":"local","local":true}

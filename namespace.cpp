@@ -19,5 +19,7 @@ int main ()
     cout<<age<<endl;
     // cout<<ag2<<endl;
     cout<<age2<<endl;
+    hello();
+    hello2();
     return 0;
 }
