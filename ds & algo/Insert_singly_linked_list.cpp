@@ -26,6 +26,15 @@ void insert(Node * head,int pos,int val){
     newNode->next=tmp->next;
     tmp->next=newNode;
 }
+int size(Node* head){
+    Node * tmp = head;
+    int count;
+    while((tmp!=NULL)){
+        count++;
+        tmp=tmp->next;
+    }
+    return count;
+}
 int main ()
 {
     Node *head = new Node(10);
@@ -43,7 +52,14 @@ int main ()
     b->next=c;
     c->next=d;
     d->next=e;
-    insert(head,2,509);
+    int pos,val;
+    cin>>pos>>val;
+    if(pos>size(head)){
+        cout<<"Linked list is not that long."<<endl;
+    } else {
+        insert(head, pos,val);
+    }
+    // insert(head,2,509);
     print(head);
     
     return 0;
