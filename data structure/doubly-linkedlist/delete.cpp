@@ -35,19 +35,7 @@ void print_reverse(Node *tail)
     }
     cout << endl;
 }
-void insert_at_position(Node *head, int pos, int data)
-{
-    Node *newNode = new Node(data);
-    Node *tmp = head;
-    for (int i = 1; i <= pos - 1; i++)
-    {
-        tmp = tmp->next;
-    }
-    newNode->next = tmp->next;
-    tmp->next = newNode;
-    newNode->next->prev = newNode;
-    newNode->prev = tmp;
-}
+
 int size(Node *head)
 {
     Node *tmp = head;
@@ -59,33 +47,36 @@ int size(Node *head)
     }
     return cnt;
 }
-void insert_head(Node *&head, Node *&tail, int data)
+void delete_at_position(Node *head, int pos)
 {
-    Node *newNode = new Node(data);
-    if (head == NULL)
+    Node *tmp = head;
+    for (int i = 1; i <= pos - 1; i++)
     {
-        head = newNode;
-        tail = newNode;
-        return;
+        tmp = tmp->next;
     }
-    newNode->next = head;
-    head->prev = newNode;
+    Node *deleteNode = tmp->next;
+    tmp->next = tmp->next->next;
+    tmp->next->prev = tmp;
+    delete deleteNode;
+}
+void delete_tail(Node *&tail)
+{
+    Node *deleteNode = tail;
+    tail = tail->prev;
 
-    head = newNode;
+    delete deleteNode;
+
+    tail->next = NULL;
 }
-void insert_tail(Node *&head, Node *&tail, int data)
+void delete_head(Node *&head)
 {
-    Node *newNode = new Node(data);
-    if (tail == NULL)
-    {
-        head = newNode;
-        tail = newNode;
-        return;
-    }
-    tail->next = newNode;
-    newNode->prev = tail;
-    tail = tail->next;
+    Node *deleteNode = head;
+    head = head->next;
+
+    delete deleteNode;
+    head->prev = NULL;
 }
+
 int main()
 {
     Node *head = new Node(10);
@@ -100,25 +91,24 @@ int main()
     b->prev = a;
     b->next = c;
     c->prev = b;
-
-    int pos, data;
-    cin >> pos >> data;
-    if (pos == 0)
+    int pos;
+    cin >> pos;
+    if (pos >= size(head))
     {
-        insert_head(head, tail, data);
+        cout << "invalid" << endl;
     }
-    else if (pos == size(head))
+    else if (pos == 0)
     {
-        insert_tail(head, tail, data);
+        delete_head(head);
     }
-    else if (pos >= size(head))
+    else if (pos == size(head) - 1)
     {
-        cout << "Invalid" << endl;
+        delete_tail(tail);
     }
     else
     {
 
-        insert_at_position(head, 2, 100);
+        delete_at_position(head, pos);
     }
 
     print(head);
