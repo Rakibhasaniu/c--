@@ -40,8 +40,40 @@ void insertAtHead(Node *&head, Node *&tail, int val)
     tmp->prev = newNode;
     head = newNode;
 }
-void insertAtAnyPosition(Node *head, int pos, int val)
+void insertAtAnyPosition(Node *&head, Node *&tail, int pos, int val)
 {
+    if (pos == 1)
+    {
+        insertAtHead(head, tail, val);
+    }
+    else if (pos == size(head) + 1)
+    {
+        insertAtTail(head, tail, val);
+    }
+    else
+    {
+        Node *newNode = new Node(val);
+        Node *tmp = head;
+        for (int i = 1; i < pos - 1; i++)
+        {
+            tmp = tmp->next;
+        }
+        newNode->next = tmp->next;
+        tmp->next = newNode;
+        tmp->next->prev = newNode;
+        newNode->prev = tmp;
+    }
+}
+int size(Node *head)
+{
+    Node *tmp = head;
+    int cnt = 0;
+    while (tmp != NULL)
+    {
+        cnt++;
+        tmp = tmp->next;
+    }
+    return cnt;
 }
 void print(Node *head)
 {
