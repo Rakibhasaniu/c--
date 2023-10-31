@@ -23,6 +23,25 @@ void insertAtTail(Node *&head, Node *&tail, int val)
         return;
     }
     tail->next = newNode;
+    newNode->prev = tail;
+    tail = newNode;
+}
+void insertAtHead(Node *&head, Node *&tail, int val)
+{
+    Node *newNode = new Node(val);
+    if (head == NULL)
+    {
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+    Node *tmp = head;
+    newNode->next = head;
+    tmp->prev = newNode;
+    head = newNode;
+}
+void insertAtAnyPosition(Node *head, int pos, int val)
+{
 }
 void print(Node *head)
 {
@@ -44,7 +63,8 @@ int main()
         cin >> val;
         if (val == -1)
             break;
-        insertAtTail(head, tail, val);
+        // insertAtTail(head, tail, val);
+        insertAtHead(head, tail, val);
     }
     print(head);
     return 0;
