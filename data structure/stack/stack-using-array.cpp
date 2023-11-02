@@ -31,6 +31,26 @@ public:
 };
 int main()
 {
+    myStack s;
+    // s.push(10);
+    // s.push(20);
+    // s.push(30);
+    // cout << s.top() << endl;
+    // s.pop();
+    // cout << s.top() << endl;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        s.push(x);
+    }
 
+    while (s.empty() == false)
+    {
+        cout << s.top() << endl;
+        s.pop();
+    }
     return 0;
 }
