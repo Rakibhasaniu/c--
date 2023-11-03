@@ -3,13 +3,14 @@ using namespace std;
 class Node
 {
 public:
-    int data;
+    int val;
     Node *next;
     Node *prev;
-    Node(int data)
+    Node(int val)
     {
-        this->data = data;
-        this->next = NULL : this->prev = NULL;
+        this->val = val;
+        this->next = NULL;
+        this->prev = NULL;
     }
 };
 class myStack
@@ -17,38 +18,48 @@ class myStack
 public:
     Node *head = NULL;
     Node *tail = NULL;
-
-    void push(int data)
+    int sz = 0;
+    void push(int val)
     {
-        Node *newNode = new Node(data);
+        sz++;
+        Node *newNode = new Node(val);
         if (head == NULL)
         {
             head = newNode;
             tail = newNode;
             return;
         }
+        newNode->prev = tail;
         tail->next = newNode;
         tail = tail->next;
     }
     void pop()
     {
+        sz--;
         Node *deleteNode = tail;
         tail = tail->prev;
         if (tail == NULL)
+        {
             head = NULL;
+        }
+        else
+        {
+            tail->next = NULL;
+        }
+
         delete deleteNode;
     }
     int top()
     {
-        return v.back();
+        return tail->val;
     }
     int size()
     {
-        return v.size();
+        return sz;
     }
     bool empty()
     {
-        if (v.size() == 0)
+        if (sz == 0)
             return true;
         else
             return false;
@@ -56,26 +67,22 @@ public:
 };
 int main()
 {
-    myStack s;
-    // s.push(10);
-    // s.push(20);
-    // s.push(30);
-    // cout << s.top() << endl;
-    // s.pop();
-    // cout << s.top() << endl;
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        s.push(x);
-    }
+    myStack st;
+    // st.pop();
+    cout << st.top() << endl;
 
-    while (s.empty() == false)
-    {
-        cout << s.top() << endl;
-        s.pop();
-    }
+    // int n;
+    // cin >> n;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     int x;
+    //     cin >> x;
+    //     st.push(x);
+    // }
+    // while (!st.empty())
+    // {
+    //     cout << st.top() << endl;
+    //     st.pop();
+    // }
     return 0;
 }
