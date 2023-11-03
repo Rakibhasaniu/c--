@@ -5,10 +5,12 @@ class Node
 public:
     int val;
     Node *next;
+    Node *prev;
     Node(int val)
     {
         this->val = val;
         this->next = NULL;
+        this->prev = NULL;
     }
 };
 class myQueue
@@ -28,6 +30,7 @@ public:
             return;
         }
         tail->next = newNode;
+        newNode->prev = tail;
         tail = tail->next;
     }
     void pop()
@@ -35,11 +38,14 @@ public:
         sz--;
         Node *deleteNode = head;
         head = head->next;
-        delete deleteNode;
         if (head == NULL)
         {
             tail = NULL;
+            delete deleteNode;
+            return;
         }
+        head->prev = NULL;
+        delete deleteNode;
     }
     int front()
     {
@@ -61,12 +67,6 @@ public:
 int main()
 {
     myQueue q;
-    // q.push(10);
-    // q.push(20);
-    // q.push(30);
-    // q.push(40);
-    // q.pop();
-    // cout << q.front() << endl;
     int n;
     cin >> n;
     for (int i = 0; i < n; i++)
