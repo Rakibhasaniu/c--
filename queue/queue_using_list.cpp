@@ -62,9 +62,9 @@ int main()
         cout << q.front() << " ";
         q.pop();
     }
-    if (!q.empty())
-    {
-        q.pop();
-    }
+    // if (!q.empty())
+    // {
+    //     q.pop();
+    // }
     return 0;
 }
